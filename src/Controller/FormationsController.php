@@ -70,7 +70,7 @@ class FormationsController extends AbstractController {
     #[Route('/formations/formation/{id}', name: 'formations.showone')]
     public function showOne($id): Response{
         $formation = $this->formationRepository->find($id);
-        return $this->render(self::CHEMIN_FORMATION, [
+        return $this->render("pages/formation.html.twig", [
             'formation' => $formation
         ]);        
     }   
