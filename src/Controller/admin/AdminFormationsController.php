@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * Description of AdminFormationsController
+ * Description of AdminFormationsController 
  *
  * @author fanny
  */
@@ -30,7 +30,9 @@ class AdminFormationsController extends AbstractController {
      */
     private $categorieRepository;
    
-    
+    /**
+     * Chemin de la page de gestion des formations
+     */
     private const CHEMIN_ADMIN_FORMATION = "admin/admin.formations.html.twig";
     
     /**
