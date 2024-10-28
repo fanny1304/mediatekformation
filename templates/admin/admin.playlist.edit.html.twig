@@ -1,0 +1,15 @@
+{% extends "baseadmin.html.twig" %}
+
+{% block body %}
+    <h2>Editer une playlist</h2>
+    {{ form_start(formplaylist) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(formplaylist.name) }}
+            {{ form_row(formplaylist.description) }}
+            {{ form_row(formplaylist.formations, {'attr':{'disabled':'disabled'}}) }}
+        </div>
+    </div>
+    {{ form_end(formplaylist) }}
+{% endblock %}
+

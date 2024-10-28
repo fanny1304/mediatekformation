@@ -3,7 +3,12 @@
 {% block body %}
     <h2>Gestion des playlists</h2
     <!-- Bouton ajout d'une playlist --> 
-    
+    <p class="text-end">
+        <a href="{{ path('admin.playlists.ajout') }}" class="btn btn-info active"
+           role="button" aria-pressed="true">
+            Ajouter une playlist
+        </a>
+    </p>
     <table class="table table-striped">
         <caption>Table présentant la liste des playlists</caption>
         <thead>
@@ -79,7 +84,7 @@
                             {{ playlists[k].formations|length }}
                         </td>
                         <td class="text-center" style="display:flex;flex-flow: column;gap:12.5px;">
-                            <a href="#" 
+                            <a href="{{ path('admin.playlists.edit', {id:playlists[k].id}) }}" 
                                class="btn btn-secondary">Editer</a>
                             <a href="{{ path('admin.playlists.suppr', {id:playlists[k].id}) }}" class="btn btn-danger" 
                                onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer {{ playlists[k].name }} ?')">

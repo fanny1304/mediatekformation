@@ -2,6 +2,8 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\Playlist;
+use App\Form\PlaylistType;
 use App\Repository\CategorieRepository;
 use App\Repository\FormationRepository;
 use App\Repository\PlaylistRepository;
@@ -99,6 +101,39 @@ class AdminPlaylistsController extends AbstractController{
                 
     }
           
+    #[Route('/admin/playlists/edit/{id}', name:'admin.playlists.edit')]
+    public function edit(int $id, Request $request): Response{
+        $playlist = $this->playlistRepository->find($id);
+        $formPlaylist= $this->createForm(PlaylistType::class, $playlist);
+        
+        $formPlaylist->handleRequest($request);
+        if ($formPlaylist->isSubmitted() && $formPlaylist->isValid()){
+            $this->playlistRepository->add($playlist);
+            return $this->redirectToRoute("admin.playlists");
+        }
+        
+        return $this->render("admin/admin.playlist.edit.html.twig", [
+            'playlist' => $playlist, 
+            'formplaylist' => $formPlaylist->createView()
+        ]);
+    }
     
+    #[Route('/admin/playlists/ajout', name: 'admin.playlists.ajout')]
+    public function ajout(Request $request): Response{
+        $playlist = new Playlist();
+        $formPlaylist = $this->createForm(PlaylistType::class, $playlist);
+        $formPlaylist->remove('formations');
+        
+        $formPlaylist->handleRequest($request);
+        if ($formPlaylist->isSubmitted() && $formPlaylist->isValid()){
+            $this->playlistRepository->add($playlist);
+            return $this->redirectToRoute("admin.playlists");
+        }
+        
+        return $this->render("admin/admin.playlist.ajout.html.twig", [
+            'playlist' => $playlist, 
+            'formplaylist' => $formPlaylist->createView()
+        ]);
+    }
 }
 
