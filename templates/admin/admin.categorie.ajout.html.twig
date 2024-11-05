@@ -1,0 +1,13 @@
+{% extends "baseadmin.html.twig" %}
+
+{% block body %}
+    <h2>Ajouter une catégorie</h2>
+    {{ form_start(formcategorie) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(formcategorie.name) }}
+        </div>
+    </div>
+    {{ form_end(formcategorie) }}
+{% endblock %}
+

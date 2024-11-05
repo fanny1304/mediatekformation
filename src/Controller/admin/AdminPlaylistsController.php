@@ -36,14 +36,24 @@ class AdminPlaylistsController extends AbstractController{
      */
     private $playlistRepository;
     
+    /**
+     * Constante du chemin menant à la page de gestion des playlists
+     */
     private const CHEMIN_ADMIN_PLAYLISTS = "admin/admin.playlists.html.twig";
     
+    /**
+     * Constructeur
+     * @param FormationRepository $formationRepository
+     * @param CategorieRepository $categorieRepository
+     * @param PlaylistRepository $playlistRepository
+     */
     public function __construct(FormationRepository $formationRepository, CategorieRepository $categorieRepository, PlaylistRepository $playlistRepository) {
         $this->formationRepository = $formationRepository;
         $this->categorieRepository = $categorieRepository;
         $this->playlistRepository = $playlistRepository;
     }
 
+    
     #[Route('/admin/playlists', name: 'admin.playlists')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();

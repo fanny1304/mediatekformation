@@ -1,0 +1,53 @@
+{% extends "baseadmin.html.twig" %}
+
+{% block body %}
+    <h2>Gestion des catégories</h2>
+    <!-- Bouton pour ajouter une catégorie -->
+    <p class="text-end">
+        <a href="{{ path('admin.categories.ajout') }}" 
+           class="btn btn-info active"
+           role="button" aria-pressed="true">
+            Ajouter une catégorie
+        </a>
+    </p>
+    <table class="table table-striped">
+        <caption>Table présentant la liste des catégories</caption>
+        <thead>
+            <tr>
+                <th class='text-left align-top' scope="col">
+                    Nom de la catégorie
+                </th>
+                <th class='text-center align-top' scope="col">
+                    Nombre de formations associées
+                </th>
+                <th class="text-center align-top" scope="col">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- boucle sur les catégories -->
+            {% if categories|length > 0 %}
+                {% for k in 0..categories|length-1 %}
+                    <tr class="align-middle">
+                        <td>
+                            <h5 class="text-info">
+                                {{ categories[k].name }}
+                            </h5>
+                        </td>
+                        <td class="text-center">
+                            {{ categories[k].formations|length }}
+                        </td>
+                        <td class="text-center" style="display:flex;flex-flow:column;gap:12.5px;">
+                            <a href="{{ path('admin.categories.suppr', {id:categories[k].id}) }}"
+                               class="btn btn-danger"
+                               onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer {{categories[k].name}} ? ')">
+                                Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
