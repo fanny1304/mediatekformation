@@ -45,6 +45,10 @@ class AdminCategoriesController extends AbstractController{
         $this->categorieRepository = $categorieRepository;
     }
 
+    /**
+     * Route redirigeant vers la page d'administration des catégories
+     * @return Response
+     */
     #[Route('/admin/categories', name: 'admin.categories')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();
@@ -55,7 +59,11 @@ class AdminCategoriesController extends AbstractController{
         ]);
     }   
     
-    
+    /**
+     * Route permettant de supprimer une catégorie
+     * @param int $id
+     * @return Response
+     */
     #[Route('/admin/categories/suppr/{id}', name: 'admin.categories.suppr')]
     public function suppr(int $id): Response{
         $categorie = $this->categorieRepository->find($id);
@@ -68,37 +76,36 @@ class AdminCategoriesController extends AbstractController{
         }
     }
     
-    
+    /**
+     * Route permettant d'ajouter une catégorie
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/admin/categories/ajout', name: 'admin.categories.ajout')]
+    public function ajout(Request $request): Response {
+        $categorie = new Categorie();
+        $formCategorie = $this->createForm(CategorieType::class, $categorie);
+        $formCategorie->handleRequest($request);
 
-    
-#[Route('/admin/categories/ajout', name: 'admin.categories.ajout')]
-public function ajout(Request $request): Response {
-    $categorie = new Categorie();
-    $formCategorie = $this->createForm(CategorieType::class, $categorie);
-    $formCategorie->handleRequest($request);
+        if ($formCategorie->isSubmitted() && $formCategorie->isValid()) {
+            $nomCategorie = $categorie->getName();
+            $double = $this->categorieRepository->findOneBy(['name' => $nomCategorie]);
 
-    if ($formCategorie->isSubmitted() && $formCategorie->isValid()) {
-        $nomCategorie = $categorie->getName();
-        $double = $this->categorieRepository->findOneBy(['name' => $nomCategorie]);
-
-        if ($double) {
-            echo "<script type='text/javascript'>
-                alert('Ce nom de catégorie existe déjà dans la base de données.');
-                window.location.href = '" . $this->generateUrl("admin.categories.ajout") . "';
-            </script>";
-            exit;
-        } else {
-            $this->categorieRepository->add($categorie);
-            return $this->redirectToRoute("admin.categories");
+            if ($double) {
+                echo "<script type='text/javascript'>
+                    alert('Ce nom de catégorie existe déjà dans la base de données.');
+                    window.location.href = '" . $this->generateUrl("admin.categories.ajout") . "';
+                </script>";
+                exit;
+            } else {
+                $this->categorieRepository->add($categorie);
+                return $this->redirectToRoute("admin.categories");
+            }
         }
+
+        return $this->render("admin/admin.categorie.ajout.html.twig", [
+            'formcategorie' => $formCategorie->createView()
+        ]);
     }
-
-    return $this->render("admin/admin.categorie.ajout.html.twig", [
-        'formcategorie' => $formCategorie->createView()
-    ]);
-}
-
-    
-    
     
 }
