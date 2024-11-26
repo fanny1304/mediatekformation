@@ -34,9 +34,17 @@ class PlaylistsController extends AbstractController {
      */
     private $categorieRepository;    
     
-    
+    /**
+     * Chemin de la page d'affichage des playlists
+     */
     private const CHEMIN_PLAYLISTS = "pages/playlists.html.twig";
     
+    /**
+     * Constructeur
+     * @param PlaylistRepository $playlistRepository
+     * @param CategorieRepository $categorieRepository
+     * @param FormationRepository $formationRespository
+     */
     function __construct(PlaylistRepository $playlistRepository, 
             CategorieRepository $categorieRepository,
             FormationRepository $formationRespository) {
@@ -46,7 +54,7 @@ class PlaylistsController extends AbstractController {
     }
     
     /**
-     * @Route("/playlists", name="playlists")
+     * Route redirigeant vers la page d'affichage des playlists
      * @return Response
      */
     #[Route('/playlists', name: 'playlists')]
@@ -59,6 +67,12 @@ class PlaylistsController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant de trier les playlists
+     * @param type $champ
+     * @param type $ordre
+     * @return Response
+     */
     #[Route('/playlists/tri/{champ}/{ordre}', name: 'playlists.sort')]
     public function sort($champ, $ordre): Response{
         switch($champ){
@@ -78,6 +92,13 @@ class PlaylistsController extends AbstractController {
         ]);
     }          
 
+    /**
+     * Route permettant de trouver les playlists recherchées
+     * @param type $champ
+     * @param Request $request
+     * @param type $table
+     * @return Response
+     */
     #[Route('/playlists/recherche/{champ}/{table}', name: 'playlists.findallcontain')]
     public function findAllContain($champ, Request $request, $table=""): Response{
         $valeur = $request->get("recherche");
@@ -91,6 +112,11 @@ class PlaylistsController extends AbstractController {
         ]);
     }  
 
+    /**
+     * Route permettant d'afficher les détails d'une playlist
+     * @param type $id
+     * @return Response
+     */
     #[Route('/playlists/playlist/{id}', name: 'playlists.showone')]
     public function showOne($id): Response{
         $playlist = $this->playlistRepository->find($id);

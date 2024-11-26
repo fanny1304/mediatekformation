@@ -27,22 +27,38 @@ class Playlist
      */
     #[ORM\OneToMany(targetEntity: Formation::class, mappedBy: 'playlist')]
     private Collection $formations;
-
+    
+    /**
+     * Constructeur
+     */
     public function __construct()
     {
         $this->formations = new ArrayCollection();
     }
 
+    /**
+     * Getter sur l'id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter sur le name
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter sur le name
+     * @param string|null $name
+     * @return static
+     */
     public function setName(?string $name): static
     {
         $this->name = $name;
@@ -50,11 +66,20 @@ class Playlist
         return $this;
     }
 
+    /**
+     * Getter sur la description
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * Setter sur la description
+     * @param string|null $description
+     * @return static
+     */
     public function setDescription(?string $description): static
     {
         $this->description = $description;
@@ -70,6 +95,11 @@ class Playlist
         return $this->formations;
     }
 
+    /**
+     * Ajouter une formation
+     * @param Formation $formation
+     * @return static
+     */
     public function addFormation(Formation $formation): static
     {
         if (!$this->formations->contains($formation)) {
@@ -80,6 +110,11 @@ class Playlist
         return $this;
     }
 
+    /**
+     * Supprimer une formation
+     * @param Formation $formation
+     * @return static
+     */
     public function removeFormation(Formation $formation): static
     {
         if (($this->formations->removeElement($formation)) && ($formation->getPlaylist() === $this)) {

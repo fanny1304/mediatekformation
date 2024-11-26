@@ -15,12 +15,22 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @author fanny
  */
 class FormationValidationTest extends KernelTestCase{
+    /**
+     * créé et retourne un objet initialisé de type Formation
+     * @return Formation
+     */
     public function getFormation(): Formation{
         return (new Formation())
                 ->setTitle("Formation Test")
                 ->setPlaylist(New Playlist());
     }
     
+    /**
+     * Fonction qui gère la récupération des erreurs 
+     * @param Formation $formation
+     * @param int $nbErreursAttendues
+     * @param string $message
+     */
     public function assertErrors(Formation $formation, int $nbErreursAttendues, string $message=""){
         self::bootKernel();
         $validator = self::getContainer()->get(ValidatorInterface::class);
@@ -28,6 +38,10 @@ class FormationValidationTest extends KernelTestCase{
         $this->assertCount($nbErreursAttendues, $error, $message);
     }
     
+    /**
+     * Test les cas de figures acceptés
+     * Lorsque la date renseignée n'est pas postérieure à aujourd'hui
+     */
     public function testValidDateFormation(){
         $aujourdhui = new \DateTime();
         $this->assertErrors($this->getFormation()->setPublishedAt($aujourdhui), 0, "aujourd'hui devrait réussir");
@@ -35,6 +49,10 @@ class FormationValidationTest extends KernelTestCase{
         $this->assertErrors($this->getFormation()->setPublishedAt($plustot), 0, "plus tôt devrait réussir");
     }
     
+    /**
+     * Test les cas de figures refusés
+     * Lorsque la date renseignée est postérieure à aujourd'hui
+     */
     public function testNonValidDateFormation(){
         $demain = (new \DateTime())->add(new DateInterval("P1D"));
         $this->assertErrors($this->getFormation()->setPublishedAt($demain), 1, "demain devrait échouer");

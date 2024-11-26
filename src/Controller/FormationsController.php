@@ -27,13 +27,25 @@ class FormationsController extends AbstractController {
      */
     private $categorieRepository;
     
+    /**
+     * Chemin de la page d'affichage des formations
+     */
     private const CHEMIN_FORMATION = "pages/formations.html.twig";
     
+    /**
+     * Constructeur
+     * @param FormationRepository $formationRepository
+     * @param CategorieRepository $categorieRepository
+     */
     function __construct(FormationRepository $formationRepository, CategorieRepository $categorieRepository) {
         $this->formationRepository = $formationRepository;
         $this->categorieRepository= $categorieRepository;
     }
     
+    /**
+     * Route redirigeant vers la page d'affichage des formations
+     * @return Response
+     */
     #[Route('/formations', name: 'formations')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();
@@ -44,6 +56,13 @@ class FormationsController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant de trier les formations
+     * @param type $champ
+     * @param type $ordre
+     * @param type $table
+     * @return Response
+     */
     #[Route('/formations/tri/{champ}/{ordre}/{table}', name: 'formations.sort')]
     public function sort($champ, $ordre, $table=""): Response{
         $formations = $this->formationRepository->findAllOrderBy($champ, $ordre, $table);
@@ -54,6 +73,13 @@ class FormationsController extends AbstractController {
         ]);
     }     
 
+    /**
+     * Route permettant de trouver les formations recherchées
+     * @param type $champ
+     * @param Request $request
+     * @param type $table
+     * @return Response
+     */
     #[Route('/formations/recherche/{champ}/{table}', name: 'formations.findallcontain')]
     public function findAllContain($champ, Request $request, $table=""): Response{
         $valeur = $request->get("recherche");
@@ -67,6 +93,11 @@ class FormationsController extends AbstractController {
         ]);
     }  
 
+    /**
+     * Route permettant d'afficher les détails d'une formation
+     * @param type $id
+     * @return Response
+     */
     #[Route('/formations/formation/{id}', name: 'formations.showone')]
     public function showOne($id): Response{
         $formation = $this->formationRepository->find($id);

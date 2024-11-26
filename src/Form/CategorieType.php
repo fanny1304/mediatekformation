@@ -16,6 +16,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author fanny
  */
 class CategorieType extends AbstractType{
+    /**
+     * Construction du formulaire
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void 
     {     
         $builder 
@@ -28,6 +34,11 @@ class CategorieType extends AbstractType{
                 ]);
     }
     
+    /**
+     * Configurer les options
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver):void{
         $resolver->setDefaults([
             'data_class' => Categorie::class,

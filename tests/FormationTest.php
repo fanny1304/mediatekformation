@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
  * @author fanny
  */
 class FormationTest extends TestCase{
+    /**
+     * test sur le format dans lequel va être envoyé la date de parution d'une formation
+     */
     public function testGetPublishedAtString(){
         $formation = new Formation();
         $formation->setPublishedAt(new DateTime("2024-11-13 14:00:12"));

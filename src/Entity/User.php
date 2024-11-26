@@ -34,16 +34,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $keycloakId = null;
 
+    /**
+     * Getter sur l'id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter sur l'email
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Setter sur l'email
+     * @param string $email
+     * @return static
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -93,6 +106,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
+    /**
+     * Setter sur le password
+     * @param string $password
+     * @return static
+     */
     public function setPassword(string $password): static
     {
         $this->password = $password;
@@ -109,11 +127,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * Getter sur l'identifiant keycloak
+     * @return string|null
+     */
     public function getKeycloakId(): ?string
     {
         return $this->keycloakId;
     }
 
+    /**
+     * Setter sur l'identifiant keycloak
+     * @param string|null $keycloakId
+     * @return static
+     */
     public function setKeycloakId(?string $keycloakId): static
     {
         $this->keycloakId = $keycloakId;

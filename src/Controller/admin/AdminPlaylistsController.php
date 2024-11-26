@@ -53,7 +53,10 @@ class AdminPlaylistsController extends AbstractController{
         $this->playlistRepository = $playlistRepository;
     }
 
-    
+    /**
+     * Route redirigeant vers la page d'administration des playlists
+     * @return Response
+     */
     #[Route('/admin/playlists', name: 'admin.playlists')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();
@@ -66,6 +69,13 @@ class AdminPlaylistsController extends AbstractController{
         ]);
     }
 
+    /**
+     * Route permettant de trier le tableau
+     * @param type $champ
+     * @param type $ordre
+     * @param type $table
+     * @return Response
+     */
     #[Route('/admin/playlists/tri/{champ}/{ordre}/{table}', name: 'admin.playlists.sort')]
     public function sort($champ, $ordre, $table=""): Response {
         switch($champ){
@@ -85,6 +95,13 @@ class AdminPlaylistsController extends AbstractController{
         ]);
     }
     
+    /**
+     * Route permettant de trouver les formations recherchées
+     * @param type $champ
+     * @param Request $request
+     * @param type $table
+     * @return Response
+     */
     #[Route('/admin/playlists/recherche/{champ}/{table}', name: 'admin.playlists.findallcontain')]
     public function findAllContain($champ, Request $request, $table=""): Response{
         $valeur = $request->get("recherche");
@@ -98,6 +115,11 @@ class AdminPlaylistsController extends AbstractController{
         ]);
     }
     
+    /**
+     * Route permettant de supprimer une playlist
+     * @param int $id
+     * @return Response
+     */
     #[Route('/admin/playlists/suppr/{id}', name:'admin.playlists.suppr')]
     public function suppr(int $id): Response{
         $playlist = $this->playlistRepository->find($id);
@@ -110,7 +132,13 @@ class AdminPlaylistsController extends AbstractController{
         }
                 
     }
-          
+    
+    /**
+     * Route permettant d'éditer une playlist
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/playlists/edit/{id}', name:'admin.playlists.edit')]
     public function edit(int $id, Request $request): Response{
         $playlist = $this->playlistRepository->find($id);
@@ -128,6 +156,11 @@ class AdminPlaylistsController extends AbstractController{
         ]);
     }
     
+    /**
+     * Route permettant d'ajouter une playlist
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/playlists/ajout', name: 'admin.playlists.ajout')]
     public function ajout(Request $request): Response{
         $playlist = new Playlist();

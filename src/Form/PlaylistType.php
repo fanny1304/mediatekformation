@@ -47,6 +47,11 @@ class PlaylistType extends AbstractType {
                 ]);
     }
    
+    /**
+     * Configurer les options
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver):void{
         $resolver->setDefaults([
             'data_class' => Playlist::class,

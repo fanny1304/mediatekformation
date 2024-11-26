@@ -24,21 +24,37 @@ class Categorie
     #[ORM\ManyToMany(targetEntity: Formation::class, mappedBy: 'categories')]
     private Collection $formations;
 
+    /**
+     * Constructeur
+     */
     public function __construct()
     {
         $this->formations = new ArrayCollection();
     }
 
+    /**
+     * Getter sur l'id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter sur le name
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * Setter sur le name 
+     * @param string|null $name
+     * @return static
+     */
     public function setName(?string $name): static
     {
         $this->name = $name;
@@ -54,6 +70,11 @@ class Categorie
         return $this->formations;
     }
 
+    /**
+     * Ajouter une formation
+     * @param Formation $formation
+     * @return static
+     */
     public function addFormation(Formation $formation): static
     {
         if (!$this->formations->contains($formation)) {
@@ -64,6 +85,11 @@ class Categorie
         return $this;
     }
 
+    /**
+     * Supprimer une formation
+     * @param Formation $formation
+     * @return static
+     */
     public function removeFormation(Formation $formation): static
     {
         if ($this->formations->removeElement($formation)) {
