@@ -9,9 +9,16 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Sync files
+      id: sync
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.white-scorpion-113733.hostingersite.com
-        server-dir: /mediatekformation/
+        server-dir: /home/u124842175/domains/white-scorpion-113733.hostingersite.com/public_html/mediatekformation/
         username: u124842175.fannymediatek
         password: ${{ secrets.ftp_password }}
+
+    - name: Handle errors
+      if: ${{ failure() }}
+      run: |
+        echo "AggregateError: ${{ steps.sync.outcome }}"
+        echo "Errors: ${{ steps.sync.errors }}"
