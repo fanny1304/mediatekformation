@@ -22,7 +22,7 @@
                     <form class="form-inline mt-1" method="POST" 
                           action="{{ path('admin.playlists.findallcontain', {champ:'name'}) }}">
                         <div class="form-group mr-1 mb-2">
-                            <input type="text" class="sm" name="recherche" 
+                            <input type="text" class="sm" name="recherche" autocomplete="off"
                                    value="{% if valeur|default and not table|default %}{{ valeur }}{% endif %}">
                             <input type="hidden" name="_token" value="{{ csrf_token('filtre_name') }}">
                             <button type="submit" class="btn btn-info mb-2 btn-sm">filtrer</button>
@@ -33,7 +33,7 @@
                     Catégories associées
                     <form class="form-inline mt-1" method="POST" 
                           action="{{ path('admin.playlists.findallcontain', {champ:'id', table:'categories'}) }}">
-                        <select class="form-select form-select-sm" name="recherche" 
+                        <select class="form-select form-select-sm" name="recherche" autocomplete="off"
                                 id="recherche" onchange="this.form.submit()">
                             <option value=""></option>
                             {% for categorie in categories %}
