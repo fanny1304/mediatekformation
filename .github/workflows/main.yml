@@ -13,6 +13,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: 92.113.24.68
-        server-dir: /home/u124842175/domains/white-scorpion-113733.hostingersite.com/public_html/mediatekformation/
+        server-dir: /public_html/mediatekformation/
         username: u124842175.fannymediatek
         password: ${{ secrets.ftp_password }}
