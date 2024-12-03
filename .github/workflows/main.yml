@@ -13,5 +13,5 @@ jobs:
       with:
         server: ftp.white-scorpion-113733.hostingersite.com
         server-dir: /public_html/mediatekformation/
-        username: u124842175
+        username: u124842175.fannymediatek
         password: ${{ secrets.ftp_password }}
