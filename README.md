@@ -1,7 +1,10 @@
 # Mediatekformation
 ## Présentation
-Ce site, développé avec Symfony 6.4, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques et qui sont aussi accessibles sur YouTube.<br> 
-Actuellement, seule la partie front office a été développée. Elle contient les fonctionnalités globales suivantes :<br>
+Ce site, développé avec Symfony, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques, et permet également après authentification d'assurer la gestion des données enregistrées. L'application d'origine ne comportait que la partie <u>front-office</u>, c'est à dire la consultation des formations et des playlists répertoriées par la médiathèque. Elle est disponible dans le dépôt suivant : https://github.com/CNED-SLAM/mediatekformation. 
+
+Le but de cet atelier de professionnalisation était donc de créer de toute pièce la partie <u>back-office</u> associée au site. Elle contient les fonctionnalités globales suivantes : 
+
+NOUVEAU DIAGRAMME DE CAS D'UTILISATION
 ![img1](https://github.com/user-attachments/assets/9c5c503b-738d-40cf-ba53-36ba4c0209e8)
 ## Les différentes pages
 Voici les 5 pages correspondant aux différents cas d’utilisation.
