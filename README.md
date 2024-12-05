@@ -1,6 +1,8 @@
 # Mediatekformation
 ## Présentation
-Ce site, développé avec Symfony, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques, et permet également après authentification sur le serveur d'assurer la gestion des données enregistrées. L'application d'origine ne comportait que la partie <u>front-office</u>, c'est à dire la consultation des formations et des playlists répertoriées par la médiathèque. Le code de l'application de base est disponible dans le dépôt suivant : https://github.com/CNED-SLAM/mediatekformation. <br>
+Ce site, développé avec Symfony, permet d'accéder aux vidéos d'auto-formation proposées par une chaîne de médiathèques, et permet également après authentification sur le serveur d'assurer la gestion des données enregistrées. L'application d'origine ne comportait que la partie <u>front-office</u>, c'est à dire la consultation des formations et des playlists répertoriées par la médiathèque. <br>
+
+Le code de l'application de base est disponible dans le dépôt suivant : https://github.com/CNED-SLAM/mediatekformation. Le README de ce dépôt présente les fonctionnalités de l'application d'origine. <br>
 
 Le but de cet atelier de professionnalisation était donc de créer de toute pièce la partie <u>back-office</u> associée au site. Elle contient les fonctionnalités globales suivantes après authentification :<br>
 •	Gérer les formations : ajouter, modifier ou supprimer une formation <br>
@@ -24,6 +26,7 @@ La partie centrale contient un tableau composé de 6 colonnes : <br>
 •	La 4ème colonne ("Date de publication") contient la date de publication de chaque formation. <br>
 •	La 5ème colonne contient la capture visible sur Youtube pour chaque formation. <br>
 •	La 6ème colonne ("Actions") contient 2 boutons permettant soit d'éditer la formation, soit de la supprimer. Au clic du bouton "supprimer", un pop-up s'affiche demandant confirmation de la suppression. <br>
+
 Au niveau de l'en-tête du tableau, les colonnes "Formation", "Playlist" et "Date de publication" contiennent 2 boutons ("<" et ">") permettant de trier les lignes dans l'ordre corissant ou décroissant. <br>
 Toujours dans l'en-tête, au niveau des colonnes "Formation" et "Playlist", il est possible de filtrer les lignes grâce à un champ de recherche. <br>
 Concernant la colonne "Catégorie", le filtre s'effectue grâce à un menu déroulant. <br>
@@ -57,6 +60,7 @@ La partie centrale de la page contient un tableau composé de 4 colonnes : <br>
 • La 2ème colonne ("Catégories associées") contient la ou les catégories concernées par chaque playlist. <br>
 • La 3ème colonne ("Nombre de formations") contient le nombre de formations contenues dans chaque playlist. <br>
 • La 4ème colonne ("Actions") contient 2 boutons permettant soit d'éditer une playlist, soit de la supprimer. Au clic du bouton "supprimer", un pop-up s'affiche demandant confirmation de la suppression. Il est possible de supprimer une playlist que si elle n'est rattachée à aucune formation. <br>
+
 Au niveau de l'en-tête du tableau, les colonnes "Nom de la playlist" et "Nombre de formations" contiennent 2 boutons ("<" et ">") permettant de trier les lignes dans l'ordre croissant ou décroissant. <br> 
 Toujours dans l'en-tête, au niveau de la colonne "Nom de la playlist", il est possible de filtrer les lignes grâce à un champ de recherche. <br>
 Concernant la colonne "Catégories associées", le filtre s'effectue grâce à un menu déroulant. <br>
