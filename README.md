@@ -10,6 +10,10 @@ Le but de cet atelier de professionnalisation était donc de créer de toute pi�
 •	Gérer les catégories : ajouter ou supprimer une catégorie <br>
 •	Se déconnecter<br>
 
+Voici ci-dessous le diagramme de cas d'utilisation correspondant aux fonctionnalités de la partie back-office : 
+
+![Cas d'utilisation -back office](https://github.com/user-attachments/assets/97531fe3-0bf9-4d53-897d-cd892677dfe0)
+
 ## Les différentes pages
 Voici les différentes pages de la partie "back-office" de l'application :
 ### Page 1 : Page de connexion
